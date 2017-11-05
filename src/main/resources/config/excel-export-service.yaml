@@ -1,0 +1,9 @@
+server:
+  port: ${PORT:4444}
+name: excel-export-service
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        input: profiles
