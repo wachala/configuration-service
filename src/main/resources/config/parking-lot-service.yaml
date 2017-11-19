@@ -1,5 +1,6 @@
 server:
-  port: ${PORT:5555}
+  port: 5555
+  context-path: /parking-lot-service
 name: parking-lot-service
 
 spring:
@@ -7,3 +8,24 @@ spring:
     stream:
       bindings:
         input: profiles
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${systemEnvironment['EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE']:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: ${server.context-path}/health
+    status-page-url-path: ${server.context-path}/info
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+
+ribbon:
+  eureka:
+    enabled: true
+    ReadTimeout: 20000
+    connectTimeout: 20000
+
+feign:
+  hystrix:
+    enabled: true
