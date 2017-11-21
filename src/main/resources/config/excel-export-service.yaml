@@ -1,6 +1,5 @@
 server:
   port: 4444
-  context-path: /excel-export-service
 name: excel-export-service
 
 spring:
@@ -15,8 +14,6 @@ eureka:
       defaultZone: ${systemEnvironment['EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE']:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
-    health-check-url-path: ${server.context-path}/health
-    status-page-url-path: ${server.context-path}/info
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
 

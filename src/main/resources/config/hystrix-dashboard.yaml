@@ -13,3 +13,8 @@ eureka:
     status-page-url-path: ${server.context-path}/info
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
+
+turbine:
+  clusterNameExpression: new String("default")
+  appConfig: EXCEL-EXPORT-SERVICE,PARKING-LOT-SERVICE
+  combineHostPort: true
