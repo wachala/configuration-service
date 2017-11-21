@@ -1,0 +1,30 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+
+branches:
+  only:
+    - travis
+
+notifications:
+  email: false
+  slack:
+    secure: Gt0QVco6IuHExyXst7eb//PAc2FOY8hCBJSu65mRNIUvbOipckJGnuGI6G9uofCHRpwQQuqcuDdybpfYc9JRyglzNWE2Bse1nMM+1tsf3PUJBXo92bpBZf9ex4Rvwo4tOMh5/psPxs3jkxTMzqPsUkw6stiZr/4d3ZzlzXlaHQEwCEngp2qhEoPhQN1Byc1xPrdPyh1C1a3yX0as0kdzLCV0iVNLLh8qWIzy4d4wXwkUNgXhviAhTDMXkSThf8q74xfb0bEwu9wMtEfKWm6NEDdbT9w6K8/7Ik8x8hK+lNLBaeqAG8Z36vC/GVAko6zqQYy8qaxYi4eaKeSGluQvpon8hEtxfAi93CFTQm7Cc6uwZqt+wnvq2Ma/Wqr66VA6fzpvDx5eBg+uVqDpzZm3pMKw3beZWPuDN5pJBVoLtiEfacP+17utL6CCgf19UQANlvgZtUrky/iu68gJ4win8zPd1rkg2XsBoyWR/Yxvoilvm7FJz2Sw5vLKLBZjRhRw1ILD51WDes5cGgbCnQ7fwVFkYGr+Oa/Z8/vOKWZBjegJgkIs/d+t+NDqSv2S1fX1H4pd8sBQt6aqSxqiIM9CQL8U13Oaf7Xake6J0H4SiffxHF7+Hw+AjebC45p5mmbASLScFM7uVD8b9lYPqhjVIn//wH2O0b9If3p8d95wK0I=
+
+before_install:
+  - mvn clean package
+  - docker build -t patrykks/iosr-configuration-service .
+  - docker run --name configservice -d patrykks/iosr-configuration-service
+
+script:
+  - docker ps | grep -q configservice
+  - docker exec configservice mvn -f /webapp/configuration-service/pom.xml test
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "travis" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push patrykks/iosr-configuration-service;
+    fi
