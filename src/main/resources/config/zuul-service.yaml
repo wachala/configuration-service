@@ -31,3 +31,7 @@ zuul:
       path: /excel-export-service/api/parking-lot/**
       serviceId: excel-export-service
       stripPrefix: false
+    parkingspotwebapp:
+      path: /parking-spot-for-me-webapp/map/**
+      serviceId: parking-spot-for-me-webapp
+      stripPrefix: false
