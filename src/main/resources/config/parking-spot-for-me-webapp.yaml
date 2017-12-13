@@ -2,8 +2,6 @@ server:
   port: 8080
 name: parking-spot-for-me-webapp
 
-spring.mvc.static-path-pattern: /parking-spot-for-me-webapp/map/**
-
 eureka:
   client:
     serviceUrl:
