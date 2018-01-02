@@ -1,6 +1,6 @@
 server:
-  port: 8080
-name: parking-spot-for-me-webapp
+  port: 1111
+name: admin-service
 
 eureka:
   client:

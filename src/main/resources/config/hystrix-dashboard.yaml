@@ -18,3 +18,5 @@ turbine:
   clusterNameExpression: new String("default")
   appConfig: EXCEL-EXPORT-SERVICE,PARKING-LOT-SERVICE
   combineHostPort: true
+
+management.security.enabled: false

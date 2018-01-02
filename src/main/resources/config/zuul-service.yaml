@@ -40,3 +40,5 @@ zuul:
     excelexportservicedoc:
       path: /excel-export/**
       serviceId: excel-export-service
+
+management.security.enabled: false
