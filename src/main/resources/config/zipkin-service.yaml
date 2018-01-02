@@ -1,14 +1,6 @@
 server:
-  port: 8080
-name: parking-spot-for-me-webapp
-
-spring:
-  sleuth:
-    sampler.percentage: 1.0
-  zipkin:
-    baseUrl: http://ZIPKIN-SERVICE/
-    locator.discovery.enabled: true
-
+  port: 9411
+name: zipkin-service
 
 eureka:
   client:

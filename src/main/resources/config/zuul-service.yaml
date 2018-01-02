@@ -3,6 +3,13 @@ server:
   context-path: /zuul-service
 name: zuul-service
 
+spring:
+  sleuth:
+    sampler.percentage: 1.0
+  zipkin:
+    baseUrl: http://ZIPKIN-SERVICE/
+    locator.discovery.enabled: true
+
 eureka:
   client:
     serviceUrl:
