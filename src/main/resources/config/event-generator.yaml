@@ -1,6 +1,6 @@
 server:
-  port: 8769
-name: batch-service
+  port: 8780
+name: event-generator
 
 eureka:
   client:
